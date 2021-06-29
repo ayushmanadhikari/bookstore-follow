@@ -5,7 +5,9 @@
     </head>
     <body>
         {% block content %}
-            
+            {% for reviews in user_reviews %}
+                {{ reviews.review }}
+            {% endfor %}
         {% endblock %}
     </body>
 </html>

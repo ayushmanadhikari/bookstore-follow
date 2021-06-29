@@ -12,6 +12,9 @@ class Books(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        permissions = [('book_detail_accesss', 'can view book details page')]
+
     def get_absolute_url(self):
         return reverse('book-detail', args=[str(self.pk)])
 
@@ -24,6 +27,7 @@ class Reviews(models.Model):
 
     def __str__(self):
         return self.review[:20]
+
 
 
 

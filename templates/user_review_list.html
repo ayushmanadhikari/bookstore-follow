@@ -5,9 +5,16 @@
     </head>
     <body>
         {% block content %}
-            {% for reviews in user_reviews %}
-                {{ reviews.review }}
-            {% endfor %}
+        <div class="container mt-5">
+        <h5>Reviews by user: {{view.kwargs.user}}</h5>
+            <div class="container mt-3">
+                {% for reviews in user_reviews %}
+                    <b>{{ reviews.review }} </b> 
+                    <p class="text-muted"> Book: <a href="{% url 'book-detail' reviews.book.id %}">{{reviews.book}}</a></p><br>
+                    
+                {% endfor %}
+            </div>
+        </div>
         {% endblock %}
     </body>
 </html>

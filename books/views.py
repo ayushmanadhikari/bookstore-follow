@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from books.models import Books, Reviews
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 
 
 class BookListView(ListView):
@@ -27,6 +28,6 @@ class UserReviewsList(ListView):
     context_object_name = 'user_reviews'
 
     def get_queryset(self):
-        user = self.kwargs.get('user')                    #this captures the user instance from the url
-        user = get_user_model().objects.filter(username=user)
-        return super().get_queryset().filter(owner=user)
+        user = get_user_model().objects.filter(username=self.kwargs.get('user')).first()
+        qs = Reviews.objects.filter(owner=user)
+        return qs

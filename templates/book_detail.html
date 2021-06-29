@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<html>
+    <head></head>
+    <body>
+        {% block content %}
+        <div class="container mt-4 ">
+            <h5>Books</h5>
+            <div class="container mt-3">
+                <h5>{{book.title}}</h5><br>
+                <img src="{{book.cover.url}}" width="200" height="200"><br>
+                <small>{{book.author}}</small>
+                <p>Rs.{{book.price}}</p>
+            </div>
+            <div class="container mt-5 ">
+                <h5>Reviews</h5>
+                {% for review in book.reviews.all %}
+                    {{review.review}}
+                    <p class="text-muted">by: <a href="{% url 'user-review-list' review.owner %}">{{review.owner}}</a></p><br>
+                {% endfor %}
+            </div>
+        </div>
+        {% endblock content %}
+    </body>
+</html>

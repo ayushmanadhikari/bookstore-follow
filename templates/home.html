@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+<html>
+    <head><title>Homepage</title></head>
+    <body>
+        {% block content %}
+        <h2 class="container mt-2">HomePage</h2>
+        <div class="container mt-4">
+        {% if user.is_authenticated %}
+           <b>username:</b> {{user.username}}<br>
+            <b>email :</b> {{user.email}}<br>
+        <a href="{% url 'account_logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'account_login' %}">Login</a><br>
+            <a href="{% url 'account_signup' %}">SignUp</a>
+        {% endif %}
+        {% endblock %}
+        </div>
+    </body>
+</html>
